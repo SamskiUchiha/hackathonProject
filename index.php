@@ -25,7 +25,7 @@
           text-align: center;
         }
         body {
-          background-image: url("img/logoback.jpg"); /* new tag */
+          background-image: url("img/back5.png"); /* new tag */
           background-size: 100%;
           background-repeat: no-repeat;
         }
@@ -56,7 +56,57 @@
           center: {lat: 36.652658, lng: -121.797381},
           zoom: 12
         });
+        
+        //----FIRST DISASTER -------------------------------------------------------------------------- --------------------------------------------------------------------------
+        var image = 'img/earthquake.png';
+        var location = {lat: 36.652658, lng: -121.797381};
+        var contentString = 
+            '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">6.8 Earthquake</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>DANGER:</b> There was an earthquake in the area, ' +
+            'keep caution of buildings. '+
+            '<br><br>'+
+            '(updated on: November 3, 2018).</p>'+
+            '</div>'+
+            '</div>';
+        
+        // pop up window text box  
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        
+        // actual market for disaster
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          animation: google.maps.Animation.DROP,
+          title: '6.8 Earthquake',
+          icon: image
+        });
+      
+        // for animation
+        marker.addListener('click', function() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        });
+        
+        // so textbox can pop open
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      
+        
+        marker.setMap(map);
+  //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      
       }
+      
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClmnFTOdiYmpEXfFyIsqyHn6wtmSWdBxs&callback=initMap"
     async defer></script>
