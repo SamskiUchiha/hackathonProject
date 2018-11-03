@@ -113,7 +113,7 @@
             <br><br>
             <input type="submit" value="Submit" name="submit">
         </form>
-        <?php showImages(); ?>
+        <?//php showImages(); ?>
         
         
     </body>
