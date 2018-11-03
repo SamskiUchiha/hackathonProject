@@ -25,7 +25,7 @@
           text-align: center;
         }
         body {
-          background-image: url("img/logoback.jpg"); /* new tag */
+          background-image: url("img/back5.png"); /* new tag */
           background-size: 100%;
           background-repeat: no-repeat;
         }
@@ -53,8 +53,9 @@
           center: myLatLng,
           zoom: 12
         });
-      
-//----FIRST DISASTER -------------------------------------------------------------------------- --------------------------------------------------------------------------
+
+        
+        //----FIRST DISASTER -------------------------------------------------------------------------- --------------------------------------------------------------------------
         var image = 'img/earthquake.png';
         var location = {lat: 36.652658, lng: -121.797381};
         var contentString = 
@@ -75,7 +76,7 @@
           content: contentString
         });
         
-        // actual marker for disaster
+        // actual market for disaster
         var marker = new google.maps.Marker({
           position: location,
           map: map,
