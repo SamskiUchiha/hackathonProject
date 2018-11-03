@@ -11,18 +11,43 @@
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
-        height:70%;
-        width:100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        padding: 50px;
-      }
+        #map {
+            height:70%;
+            width:100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            padding: 2%;
+        }
+        #logo {
+          background-color: #dce1ef;
+          text-align: center;
+        }
+        body {
+          background-image: url("img/logoback.jpg"); /* new tag */
+          background-size: 100%;
+          background-repeat: no-repeat;
+        }
+        
+        #logo {
+          background-image: url("img/back2.png"); /* new tag */
+          background-size: 100%;
+          background-repeat: no-repeat;
+          border-radius: 20px;
+        }
+        
+        img {
+          width: 20%;
+        }
+        
+      
     </style>
   </head>
   <body>
+    <br>
+    <div id="logo"> <a href="https://fontmeme.com/fonts/vtks-desgaste-font/"><img src="https://fontmeme.com/permalink/181103/ca0dd70f5648766571c81587901b3e9a.png" alt="vtks-desgaste-font" border="0"></a> </div>
+    <br>
     <div id="map"></div>
     <script>
       var map;
