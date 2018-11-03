@@ -64,6 +64,30 @@
 //     }
 // }
 
+if (isset($_GET['addProduct'])) { //checks whether the form was submitted
+    
+    $productName = $_GET['productName'];
+    $description =  $_GET['description'];
+    $price =  $_GET['price'];
+    $catId =  $_GET['catId'];
+    $image = $_GET['productImage'];
+    
+    
+    $sql = "INSERT INTO reports (productName, productDescription, productImage,price, catId) 
+            VALUES (:productName, :productDescription, :productImage, :price, :catId);";
+    $np = array();
+    $np[":productName"] = $productName;
+    $np[":productDescription"] = $description;
+    $np[":productImage"] = $image;
+    $np[":price"] = $price;
+    $np[":catId"] = $catId;
+    
+    $stmt = $dbConn->prepare($sql);
+    $stmt->execute($np);
+    echo "New Product was added!";
+    
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -111,9 +135,8 @@
             Select image to upload:
             <input type="file" name="fileToUpload" id="fileToUpload">
             <br><br>
-            <input type="submit" value="Submit" name="submit">
+            <input type="submit" value="addProduct" name="submit">
         </form>
-        <?php showImages(); ?>
         
         
     </body>
