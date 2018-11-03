@@ -138,6 +138,7 @@ if (isset($_GET['addProduct'])) { //checks whether the form was submitted
             <input type="submit" value="addProduct" name="submit">
         </form>
         
+
         
     </body>
 </html>
