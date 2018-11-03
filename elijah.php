@@ -1,5 +1,9 @@
 <?php
 
+include 'dbConnection.php';
+$dbConn = startConnection("mapIt");
+include 'functions.php';
+
 // $counter = 0;
 // $pictures = array();
 // $target_dir = "img/";
@@ -66,25 +70,55 @@
 
 if (isset($_GET['addProduct'])) { //checks whether the form was submitted
     
-    $productName = $_GET['productName'];
-    $description =  $_GET['description'];
-    $price =  $_GET['price'];
-    $catId =  $_GET['catId'];
-    $image = $_GET['productImage'];
+    $disaster = $_GET['disaster'];
+    $location =  $_GET['location'];
+    
+    if ($location == "csumb")
+    {
+        $latitude = 36.65003;
+        $longitude = -121.794197;
+    }
+    if ($location == "sandCity")
+    {
+        $latitude = 36.6171819;
+        $longitude = -121.84828549999997;
+    }
+    if ($location == "monterey")
+    {
+        $latitude = 36.6002378;
+        $longitude = -121.89467609999997;
+    }
+    if ($location == "salinas")
+    {
+        $latitude = 36.6777372;
+        $longitude = -121.65550129999997;
+    }
+    if ($location == "carmel")
+    {
+        $latitude = 36.5552386;
+        $longitude = -121.92328789999999;
+    }
+    if ($location == "marina")
+    {
+        $latitude = 36.68440289999999;
+        $longitude = -121.80217299999998;
+    }
+    if ($location == "seaside")
+    {
+        $latitude = 36.6149217;
+        $longitude = -121.82209799999998;
+    }
     
     
-    $sql = "INSERT INTO reports (productName, productDescription, productImage,price, catId) 
-            VALUES (:productName, :productDescription, :productImage, :price, :catId);";
+    $sql = "INSERT INTO reports (latitude, longitude, disasterType, reportId) 
+            VALUES (:latitude, :longitude, :disasterType, :reportId);";
     $np = array();
-    $np[":productName"] = $productName;
-    $np[":productDescription"] = $description;
-    $np[":productImage"] = $image;
-    $np[":price"] = $price;
-    $np[":catId"] = $catId;
+    $np[":disaster"] = $disaster;
+    $np[":location"] = $location;
     
     $stmt = $dbConn->prepare($sql);
     $stmt->execute($np);
-    echo "New Product was added!";
+    echo "New disaster was added!";
     
 }
 
@@ -101,11 +135,8 @@ if (isset($_GET['addProduct'])) { //checks whether the form was submitted
         <div id="title">MapIt</div>
         <br>
         <form>
-            Enter a number: <input type="number" name="data"/>
-            <br><br>
             Choose a Disaster: 
-            <select>
-                
+            <select id="disaster">
                 <option value="earthquake">Earthquake</option>
                 <option value="flood">Flood</option>
                 <option value="blackout">Blackout</option>
@@ -120,7 +151,7 @@ if (isset($_GET['addProduct'])) { //checks whether the form was submitted
             </select>
             <br><br>
             Choose the location nearest to you: 
-            <select>
+            <select id="location">
                 <option value="csumb">CSUMB</option>
                 <option value="sandCity">Sand City</option>
                 <option value="monterey">Monterey</option>
