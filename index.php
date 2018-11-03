@@ -8,6 +8,7 @@
 <html>
   <head>
     <title>Simple Map</title>
+    <link rel='stylesheet' href='css/styles.css' type='text/css' />
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
