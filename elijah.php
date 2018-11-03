@@ -1,51 +1,68 @@
 <?php
 
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-}
-// Check if file already exists
-// if (file_exists($target_file)) {
-//     echo "Sorry, file already exists.";
+// $counter = 0;
+// $pictures = array();
+// $target_dir = "img/";
+// $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+// $uploadOk = 1;
+// $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// // Check if image file is a actual image or fake image
+// if(isset($_POST["submit"])) {
+//     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+//     if($check !== false) {
+//         // echo "File is an image - " . $check["mime"] . ".";
+//         $uploadOk = 1;
+//     } else {
+//         echo "File is not an image.";
+//         $uploadOk = 0;
+//     }
+// }
+// // Check if file already exists
+// // if (file_exists($target_file)) {
+// //     echo "Sorry, file already exists.";
+// //     $uploadOk = 0;
+// // }
+// // Check file size
+// if ($_FILES["fileToUpload"]["size"] > 5000000) {
+//     echo "Sorry, your file is too large.";
 //     $uploadOk = 0;
 // }
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 5000000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    echo "Sorry, only JPG, JPEG, & PNG files are allowed.";
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-}
+// // Allow certain file formats
+// if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+//     echo "Sorry, only JPG, JPEG, & PNG files are allowed.";
+//     $uploadOk = 0;
+// }
+// // Check if $uploadOk is set to 0 by an error
+// if ($uploadOk == 0) {
+//     echo "Sorry, your file was not uploaded.";
+// // if everything is ok, try to upload file
+// } else {
+//     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+//         // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+//         $counter++;
+        
+//         $temp = $_FILES["fileToUpload"]["name"];
+//         array_push($pictures, $temp);
+//         // printf($temp);
+//     } else {
+//         echo "Sorry, there was an error uploading your file.";
+//     }
+// }
 
-function add($data)
-{
-    printf($data);
-}
+// function showImages()
+// {
+//     global $pictures;
+//     // printf($pictures[2]);
+//     // echo "<br>";
+//     // printf($pictures[1]);
+//     // echo "<br>";
+//     printf($pictures[0]);
+//     echo "<br>";
+//     for ($i = $counter - 1; $i >= 0; $i--)
+//     {
+//         echo "<img src='img/".$pictures[$i]."'></img>";
+//     }
+// }
 
 ?>
 
@@ -64,9 +81,10 @@ function add($data)
             <br><br>
             Choose a Disaster: 
             <select>
+                
                 <option value="earthquake">Earthquake</option>
-                <option value="floods">Flood</option>
-                <option value="blackouts">Blackout</option>
+                <option value="flood">Flood</option>
+                <option value="blackout">Blackout</option>
                 <option value="sinkhole">Sinkhole</option>
                 <option value="mudslide">Mudslide</option>
                 <option value="thunderstorm">Thunderstorm</option>
@@ -95,16 +113,7 @@ function add($data)
             <br><br>
             <input type="submit" value="Submit" name="submit">
         </form>
-            <!--Select an image to upload: -->
-            <!--<input type="file" name="fileupload" value="fileupload" id="fileupload"> -->
-            <!--<label for="fileupload"></label> -->
-            <!--<br>-->
-            <!--<input type="image" src="/wp-content/uploads/sendform.png" alt="Submit" width="100">-->
-
-            <!--<br><br>-->
-            <!--<input type="submit" value="Submit"/>-->
-            <!--<br>-->
-            <!--<?php //add($_GET["fileupload"]); ?>-->
+        <?php showImages(); ?>
         
         
     </body>
