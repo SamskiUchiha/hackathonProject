@@ -1,8 +1,65 @@
 <?php
 
-include 'dbConnection.php';
+include 'dbConnectionMapIt.php';
 $dbConn = startConnection("mapIt");
-include 'functions.php';
+
+
+if (isset($_POST['submit'])) { //checks whether the form was submitted
+    $disaster = $_POST['disaster'];
+    $location =  $_POST['location'];
+    $latitude = 36.65003;
+    $longitude = -121.794197;
+    
+    if ($location == "sandCity")
+    {
+        $latitude = 36.6171819;
+        $longitude = -121.84828549999997;
+    }
+    if ($location == "monterey")
+    {
+        $latitude = 36.6002378;
+        $longitude = -121.89467609999997;
+    }
+    if ($location == "salinas")
+    {
+        $latitude = 36.6777372;
+        $longitude = -121.65550129999997;
+    }
+    if ($location == "carmel")
+    {
+        $latitude = 36.5552386;
+        $longitude = -121.92328789999999;
+    }
+    if ($location == "marina")
+    {
+        $latitude = 36.68440289999999;
+        $longitude = -121.80217299999998;
+    }
+    if ($location == "seaside")
+    {
+        $latitude = 36.6149217;
+        $longitude = -121.82209799999998;
+    }
+    
+    
+    $sql = "INSERT INTO reports (latitude, longitude, disasterType) 
+            VALUES (:latitude, :longitude, :disasterType);";
+    $np = array();
+    $np[":latitude"] = $latitude;
+    $np[":longitude"] = $longitude;
+    $np[":disasterType"] = $disaster;
+
+    $stmt = $dbConn->prepare($sql);
+    $stmt->execute($np);
+    // $records = $stmt->fetchAll(PDO::FETCH_ASSOC);  
+
+    
+    echo "New disaster was added!";
+    
+}
+
+
+// include 'functions.php';
 
 // $counter = 0;
 // $pictures = array();
@@ -68,60 +125,6 @@ include 'functions.php';
 //     }
 // }
 
-if (isset($_GET['addProduct'])) { //checks whether the form was submitted
-    
-    $disaster = $_GET['disaster'];
-    $location =  $_GET['location'];
-    
-    if ($location == "csumb")
-    {
-        $latitude = 36.65003;
-        $longitude = -121.794197;
-    }
-    if ($location == "sandCity")
-    {
-        $latitude = 36.6171819;
-        $longitude = -121.84828549999997;
-    }
-    if ($location == "monterey")
-    {
-        $latitude = 36.6002378;
-        $longitude = -121.89467609999997;
-    }
-    if ($location == "salinas")
-    {
-        $latitude = 36.6777372;
-        $longitude = -121.65550129999997;
-    }
-    if ($location == "carmel")
-    {
-        $latitude = 36.5552386;
-        $longitude = -121.92328789999999;
-    }
-    if ($location == "marina")
-    {
-        $latitude = 36.68440289999999;
-        $longitude = -121.80217299999998;
-    }
-    if ($location == "seaside")
-    {
-        $latitude = 36.6149217;
-        $longitude = -121.82209799999998;
-    }
-    
-    
-    $sql = "INSERT INTO reports (latitude, longitude, disasterType, reportId) 
-            VALUES (:latitude, :longitude, :disasterType, :reportId);";
-    $np = array();
-    $np[":disaster"] = $disaster;
-    $np[":location"] = $location;
-    
-    $stmt = $dbConn->prepare($sql);
-    $stmt->execute($np);
-    echo "New disaster was added!";
-    
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -134,9 +137,9 @@ if (isset($_GET['addProduct'])) { //checks whether the form was submitted
     <body>
         <div id="title">MapIt</div>
         <br>
-        <form>
+        <form action="index.php" method="POST">
             Choose a Disaster: 
-            <select id="disaster">
+            <select name="disaster">
                 <option value="earthquake">Earthquake</option>
                 <option value="flood">Flood</option>
                 <option value="blackout">Blackout</option>
@@ -161,13 +164,14 @@ if (isset($_GET['addProduct'])) { //checks whether the form was submitted
                 <option value="seaside">Seaside</option>
             </select>
             <br><br>
+            <input type="submit" value="submit" name="submit">
         </form>
-        <form action="index.php" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <br><br>
-            <input type="submit" value="addProduct" name="submit">
-        </form>
+        <!--<form action="index.php" method="post" enctype="multipart/form-data">-->
+        <!--    Select image to upload:-->
+        <!--    <input type="file" name="fileToUpload" id="fileToUpload">-->
+        <!--    <br><br>-->
+        <!--    <input type="submit" value="addProduct" name="submit">-->
+        <!--</form>-->
         
 
         
