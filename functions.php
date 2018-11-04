@@ -3,12 +3,14 @@
     include 'dbConnectionMapIt.php';
     $dbConn = startConnection("mapIt");
 
-    
     function getIncident() {
         global $dbConn;
         $incident = array();
         //$result = array();
         
+        $sql = "SET @newid=0; UPDATE reports SET reportId=(@newid:=@newid+1) ORDER BY reportID;";
+        $stmt = $dbConn->prepare($sql);
+        $stmt->execute();
         $sql = "SELECT * FROM `reports`";
         $stmt = $dbConn->prepare($sql);
         $stmt->execute();
@@ -32,13 +34,14 @@
         $size = 0;
         //$result = array();
         
-        $sql = "SELECT `reportId` FROM `reports` ORDER BY reportId DESC LIMIT 1";
+        $sql = "SELECT COUNT(*) AS total FROM reports";
         $stmt = $dbConn->prepare($sql);
         $stmt->execute();
         $records = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
+        //$size = $records['total'];
         foreach ($records as $record) {
-            $size = $record['reportId'];
+            $size = $record['total'];
         }
         
         return $size;
@@ -47,13 +50,16 @@
     function summitForm() {
         global $dbConn;
     
-        $location =  $_POST['location'];
+        $location = $_POST['location'];
+        //echo "<h1>".$location."</h1>";
         $latitude = 36.65003;
         $longitude = -121.794197;
         
         if(isset($_POST['test'])) {
             $disaster = $_POST['test'];
         }
+        
+        //echo "<h1>".$disaster."</h1>";
         
         if ($location == "sandCity")
         {
@@ -99,7 +105,7 @@
         // $records = $stmt->fetchAll(PDO::FETCH_ASSOC);  
     
         
-        echo "New disaster was added!";
+        //echo "New disaster was added!";
     }
     
 ?>

@@ -101,7 +101,7 @@ include('functions.php');
             </div>
             
             <center><h2 id="h2_1">Choose the location nearest to you:</h2></center>
-            <select id="location" required>
+            <select id="location" name='location'>
                 <option value="" disabled selected>-Select your location-</option>
                 <option value="csumb">CSUMB</option>
                 <option value="sandCity">Sand City</option>

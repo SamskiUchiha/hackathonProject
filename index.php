@@ -72,6 +72,7 @@ include('functions.php');
         // };
         var pic;
         var size = <?php echo getSize(); ?>;
+        console.log(size);
         for(i = 1; i <= size; i++) {
           pic = {
           url: 'img/icons/'+location[i][0]['disasterType']+'.png', // url
