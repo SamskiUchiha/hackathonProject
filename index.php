@@ -1,22 +1,5 @@
 <?php
-include 'functions.php';
-
-// include_once 'request.php';
-// include_once 'router.php';
-// $router = new Router(new Request);
-// $router->get('/', function() {
-//   return <<<HTML
-//   <h1>Hello world</h1>
-// HTML;
-// });
-// $router->get('/profile', function($request) {
-//   return <<<HTML
-//   <h1>Profile</h1>
-// HTML;
-// });
-// $router->post('/data', function($request) {
-//   return json_encode($request->getBody());
-// });
+include('functions.php');
 ?>
 
 <!DOCTYPE html>
@@ -62,20 +45,7 @@ include 'functions.php';
     <div id="map"></div>
     <?php
         $test = getIncident();
-        // foreach($test as $v1) {
-        //   echo "<br>";
-        //   foreach($v1 as $v2) {
-        //     echo $v2['latitude'];
-        //     echo " ";
-        //     echo $v2['longitude'];
-        //     echo " ";
-        //     echo $v2['disasterType'];
-        //   }
-        // }
-        // function displayLat() {
-        //   echo "36.653822";
-        // }
-        echo getSize();
+        //echo getSize();
     ?>
     <script type="text/javascript">
       var map;
@@ -92,59 +62,29 @@ include 'functions.php';
         //----FIRST DISASTER -------------------------------------------------------------------------- --------------------------------------------------------------------------
         //var image = 'img/earthquake.png';
         var location = JSON.parse('<?php echo json_encode($test); ?>');
-        //document.write(location);
-        //var location = {lat: 36.653822, lng: -121.797381};
-        // var contentString = 
-        //     '<div id="content">'+
-        //     '<div id="siteNotice">'+
-        //     '</div>'+
-        //     '<h1 id="firstHeading" class="firstHeading">Earthquake</h1>'+
-        //     '<div id="bodyContent">'+
-        //     '<p><b>DANGER:</b> There was an earthquake in the area, ' +
-        //     'keep caution of buildings. '+
-        //     '<br><br>'+
-        //     '(updated on: November 3, 2018).</p>'+
-        //     '</div>'+
-        //     '</div>';
-        var icon = {
-          url: "img/icons/fire.png", // url
-          scaledSize: new google.maps.Size(50, 50), // scaled size
-          origin: new google.maps.Point(0,0), // origin
-          anchor: new google.maps.Point(0, 0) // anchor
-        };
-        var location = {lat: 36.652658, lng: -121.797381};
-        var contentString = 
-            '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">6.8 Earthquake</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>DANGER:</b> There was an earthquake in the area, ' +
-            'keep caution of buildings. '+
-            '<br><br>'+
-            '(updated on: November 3, 2018).</p>'+
-            '</div>'+
-            '</div>';
-        
-        // pop up window text box
-        // var infowindow = new google.maps.InfoWindow({
-        //   content: contentString
-        // });
-        
-        // actual marker for disaster
-        //console.log(location[1][0]);
-        //console.log(Number(location[1][0]['latitude']));
         var infowindow = new google.maps.InfoWindow();
         var marker, i;
+        // var pic = {
+        //   url: "img/icons/fire.png", // url
+        //   scaledSize: new google.maps.Size(50, 50), // scaled size
+        //   origin: new google.maps.Point(0,0), // origin
+        //   anchor: new google.maps.Point(0, 0) // anchor
+        // };
+        var pic;
         var size = <?php echo getSize(); ?>;
-        console.log(size);
         for(i = 1; i <= size; i++) {
+          pic = {
+          url: 'img/icons/'+location[i][0]['disasterType']+'.png', // url
+          scaledSize: new google.maps.Size(50, 50), // scaled size
+        };
             marker = new google.maps.Marker({
               position: {lat: Number(location[i][0]['latitude']), lng: Number(location[i][0]['longitude'])},
               map: map,
               animation: google.maps.Animation.DROP,
               title: location[i][0]['disasterType'],
-              icon: 'img/'+location[i][0]['disasterType']+'.png'
+              icon: pic
+              //'img/icons/'+location[i][0]['disasterType']+'.png'
+        
             });
           
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -161,13 +101,13 @@ include 'functions.php';
         
         }
         // actual market for disaster
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map,
-          animation: google.maps.Animation.DROP,
-          title: '6.8 Earthquake',
-          icon: icon
-        });
+        // var marker = new google.maps.Marker({
+        //   position: location,
+        //   map: map,
+        //   animation: google.maps.Animation.DROP,
+        //   title: '6.8 Earthquake',
+        //   icon: icon
+        // });
       
         // for animation
         // marker.addListener('click', function() {
