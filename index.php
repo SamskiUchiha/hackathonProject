@@ -9,40 +9,38 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height:70%;
-            width:100%;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            padding: 2%;
-        }
-        #logo {
-          background-color: #dce1ef;
-          text-align: center;
-        }
-        body {
-          background-image: url("img/back5.png"); /* new tag */
-          background-size: 100%;
-          background-repeat: no-repeat;
-        }
-        
-        #logo {
-          background-image: url("img/back2.png"); /* new tag */
-          background-size: 100%;
-          background-repeat: no-repeat;
-          border-radius: 20px;
-        }
-        
-        
+      body {
+        background-image: url("img/back5.png"); /* new tag */
+        background-size: 100%;
+        background-repeat: no-repeat;
+      } 
       
     </style>
   </head>
   <body>
     <body>
+      <table style="width: 31px;">
+        <tbody>
+        <tr>
+          
+        <td>
+          <img id="logo" src="https://fontmeme.com/permalink/181104/fcea3527232ca1c33649e015717c307b.png" alt="bulletproof-font">
+        </td>
+        
+        
+        <td id="td_summit">
+          <form>
+            <input type="submit" name="submit" value="Report Diaster"/>
+          </form>
+          
+        </td>
+        
+        </tr>
+        </tbody>
+      </table>
+      
+      <hr>
+      
     <div id="map"></div>
     <script>
       var map;
@@ -53,7 +51,7 @@
           center: myLatLng,
           zoom: 12
         });
-
+        
         
         //----FIRST DISASTER -------------------------------------------------------------------------- --------------------------------------------------------------------------
         var image = 'img/earthquake.png';

@@ -6,4 +6,63 @@ body
 {
     font-size: 4em;
 }
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+    height:70%;
+    width:100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 100%;
+    padding: 2%;
+}
+hr {
+    padding: 5px;
+}
+table, td {
+    
+    padding-bottom: 2px;
+    background-color: white;
+    border-radius: 30px;
+    
+}
+td {
+    border:solid black 5px;
+}
 
+/*input, select {*/
+/*    padding: 12px 20px;*/
+/*    margin: 8px 0;*/
+/*    display: inline-block;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 4px;*/
+/*}*/
+
+input[type=submit] {
+    font-family: sans-serif;
+    font-weight: 1000;
+    font-size:20px;
+    height:75px;
+    width:200px;
+    background-color: #FFAC00;
+    color: white;
+    padding: 10px 15px;
+    margin: 3px 0;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+input[type=submit]:hover {
+    background-color: #af780a;
+}
+#td_summit {
+    
+    border-left: thick solid lightgrey;
+    border-right: thick solid lightgrey;
+}
+
+#logo {
+    border-radius: 30px;
+    border-left: thick solid lightgrey;
+}
