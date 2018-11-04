@@ -54,7 +54,7 @@ include('functions.php');
                 <td>
                     <label>
                       <input type="radio" name="test" value="blizzar" required>
-                      <img width="70" src="img/icons/blizzar.png"><p>Blizzar</p>
+                      <img width="70" src="img/icons/blizzar.png"><p>Blizzard</p>
                     </label>
                 </td>
                 
