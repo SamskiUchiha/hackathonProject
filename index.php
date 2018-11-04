@@ -19,18 +19,18 @@
   </head>
   <body>
     <body>
-      <table style="width: 31px;">
+      <table id="tb" style="width: 31px;">
         <tbody>
         <tr>
           
-        <td>
+        <td id="td_logo">
           <img id="logo" src="https://fontmeme.com/permalink/181104/fcea3527232ca1c33649e015717c307b.png" alt="bulletproof-font">
         </td>
         
         
         <td id="td_summit">
-          <form>
-            <input type="submit" name="submit" value="Report Diaster"/>
+          <form action="elijah.php">
+            <input type="submit" name="submit" value="Report Diaster"/> 
           </form>
           
         </td>
@@ -44,6 +44,7 @@
     <div id="map"></div>
     <script>
       var map;
+      
       function initMap() {
         var myLatLng = {lat: 36.652658, lng: -121.797381};
         
@@ -54,7 +55,12 @@
         
         
         //----FIRST DISASTER -------------------------------------------------------------------------- --------------------------------------------------------------------------
-        var image = 'img/earthquake.png';
+        var icon = {
+          url: "img/icons/fire.png", // url
+          scaledSize: new google.maps.Size(50, 50), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+        };
         var location = {lat: 36.652658, lng: -121.797381};
         var contentString = 
             '<div id="content">'+
@@ -80,7 +86,7 @@
           map: map,
           animation: google.maps.Animation.DROP,
           title: '6.8 Earthquake',
-          icon: image
+          icon: icon
         });
       
         // for animation
