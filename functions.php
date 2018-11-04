@@ -105,7 +105,7 @@
         // $records = $stmt->fetchAll(PDO::FETCH_ASSOC);  
     
         
-        //echo "New disaster was added!";
+        echo "<h3>Your report has been added.</h3>";
     }
     
 ?>

@@ -23,11 +23,10 @@ hr {
 #tb, #td_logo, #td_summit {
     
     padding-bottom: 2px;
-    background-color: white;
-    border-radius: 30px;
+    border-radius: 20px;
     
 }
-#td_logo, #td_summit{
+#td_logo{
     border:solid black 5px;
 }
 
@@ -55,11 +54,6 @@ input[type=submit] {
 }
 input[type=submit]:hover {
     background-color: #af780a;
-}
-#td_summit {
-    
-    border-left: thick solid lightgrey;
-    border-right: thick solid lightgrey;
 }
 
 #logo {
@@ -102,4 +96,8 @@ input[type=submit]:hover {
 }
 p {
     font: italic bold 16px/2 cursive;
+}
+
+h3 {
+    color: green;
 }
