@@ -27,40 +27,38 @@ include 'functions.php';
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height:70%;
-            width:100%;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            padding: 2%;
-        }
-        #logo {
-          background-color: #dce1ef;
-          text-align: center;
-        }
-        body {
-          background-image: url("img/back5.png"); /* new tag */
-          background-size: 100%;
-          background-repeat: no-repeat;
-        }
-        
-        #logo {
-          background-image: url("img/back2.png"); /* new tag */
-          background-size: 100%;
-          background-repeat: no-repeat;
-          border-radius: 20px;
-        }
-        
-        
+      body {
+        background-image: url("img/back5.png"); /* new tag */
+        background-size: 100%;
+        background-repeat: no-repeat;
+      } 
       
     </style>
   </head>
   <body>
     <body>
+      <table id="tb" style="width: 31px;">
+        <tbody>
+        <tr>
+          
+        <td id="td_logo">
+          <img id="logo" src="https://fontmeme.com/permalink/181104/fcea3527232ca1c33649e015717c307b.png" alt="bulletproof-font">
+        </td>
+        
+        
+        <td id="td_summit">
+          <form action="elijah.php">
+            <input type="submit" name="submit" value="Report Diaster"/> 
+          </form>
+          
+        </td>
+        
+        </tr>
+        </tbody>
+      </table>
+      
+      <hr>
+      
     <div id="map"></div>
     <?php
         $test = getIncident();
@@ -81,6 +79,7 @@ include 'functions.php';
     ?>
     <script type="text/javascript">
       var map;
+      
       function initMap() {
         var myLatLng = {lat: 36.653822, lng: -121.797381};
         
@@ -88,7 +87,7 @@ include 'functions.php';
           center: myLatLng,
           zoom: 12
         });
-
+        
         
         //----FIRST DISASTER -------------------------------------------------------------------------- --------------------------------------------------------------------------
         //var image = 'img/earthquake.png';
@@ -107,6 +106,25 @@ include 'functions.php';
         //     '(updated on: November 3, 2018).</p>'+
         //     '</div>'+
         //     '</div>';
+        var icon = {
+          url: "img/icons/fire.png", // url
+          scaledSize: new google.maps.Size(50, 50), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+        };
+        var location = {lat: 36.652658, lng: -121.797381};
+        var contentString = 
+            '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">6.8 Earthquake</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>DANGER:</b> There was an earthquake in the area, ' +
+            'keep caution of buildings. '+
+            '<br><br>'+
+            '(updated on: November 3, 2018).</p>'+
+            '</div>'+
+            '</div>';
         
         // pop up window text box
         // var infowindow = new google.maps.InfoWindow({
@@ -142,6 +160,14 @@ include 'functions.php';
           })(marker, i));
         
         }
+        // actual market for disaster
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          animation: google.maps.Animation.DROP,
+          title: '6.8 Earthquake',
+          icon: icon
+        });
       
         // for animation
         // marker.addListener('click', function() {
