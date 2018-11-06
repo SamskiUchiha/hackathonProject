@@ -1,17 +1,15 @@
 # hackathonProject
 Members:
 
-Sam Laitha,
-Santiago Bruno,
-Elijah Baird,
-Derek Iniguez,
+Sam Laitha: slaitha@csumb.edu
+
+Santiago Bruno: sbrunogonzalez@csumb.edu
+
+Elijah Baird: ebaird@csumb.edu
+
+Derek Iniguez: diniguez@csumb.edu
 
 mentor/advior:
 
-Jonathon Cabrera
+Jonathon Cabrera: jocabrera@csumb.edu
 
-Contanct Information
--slaitha@csumb.edu
--sbrunogonzalez@csumb.edu
--ebaird@csumb.edu
--diniguez@csumb.edu
