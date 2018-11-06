@@ -9,7 +9,8 @@ Elijah Baird: ebaird@csumb.edu
 
 Derek Iniguez: diniguez@csumb.edu
 
-mentor/advior:
+
+Mentor/advior:
 
 Jonathon Cabrera: jocabrera@csumb.edu
 
